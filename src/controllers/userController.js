@@ -14,21 +14,21 @@ class UserController {
   handleCallback = asyncWrapper(async (req, res) => {
     const { code } = req.query;
     const { access_token } = await getGithubAccessToken(code);
-    const {
-      login: username,
-      id,
-      avatar_url,
-      email,
-      name,
-    } = await getGithubUser(access_token);
-    const user = await userService.createUser({
-      id,
-      username,
-      email,
-      avatar_url,
-      name,
-    });
-    const token = await setCookie(res, user._id);
+    // const {
+    //   login: username,
+    //   id,
+    //   avatar_url,
+    //   email,
+    //   name,
+    // } = await getGithubUser(access_token);
+    // const user = await userService.createUser({
+    //   id,
+    //   username,
+    //   email,
+    //   avatar_url,
+    //   name,
+    // });
+    // const token = await setCookie(res, user._id);
 
     res.cookie("access_token", access_token, {
       // httpOnly: true,
@@ -36,7 +36,7 @@ class UserController {
       secure: true,
       maxAge: 1000 * 60 * 60 * 24,
     });
-    res.redirect(`${process.env.FRONTEND_URL}?token=${token}`);
+    res.redirect(`${process.env.FRONTEND_URL}`);
   });
 
   handleGetUser = asyncWrapper(async (req, res) => {
