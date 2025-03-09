@@ -11,6 +11,6 @@ app.use(cors({
 }));
 app.use(cookieParser());
 
-app.use("/api/auth/github", require("./routes/userRoute"));
+app.use("/api/auth", require("./routes/userRoute"));
 
 module.exports = app;
