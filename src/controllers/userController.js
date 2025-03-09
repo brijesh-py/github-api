@@ -32,8 +32,6 @@ class UserController {
 
     res.cookie("access_token", access_token, {
       // httpOnly: true,
-      samesite: "none",
-      secure: true,
       maxAge: 1000 * 60 * 60 * 24,
     });
     res.redirect(`${process.env.FRONTEND_URL}`);
